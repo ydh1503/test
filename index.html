@@ -103,10 +103,10 @@
             let date = $('#date').val();
 
             let doc = {
-                'image':image,
-                'title':title,
-                'content':content,
-                'date':date
+                'image': image,
+                'title': title,
+                'content': content,
+                'date': date
             };
             await addDoc(collection(db, "albums"), doc);
             alert('저장 완료!');
@@ -117,22 +117,18 @@
             $('#postingbox').toggle();
         })
 
-        $(document).ready(function () {
-            let url = "http://spartacodingclub.shop/sparta_api/seoulair";
-            fetch(url).then(res => res.json()).then(data => {
-                let gu = data['RealtimeCityAir']['row'][0]['MSRSTE_NM'];
-                let mise = data['RealtimeCityAir']['row'][0]['IDEX_NM'];
-                $('#gu').text(gu);
-                $('#msg').text(mise);
-                // let temp_html = `<p>현재 서울 ${gu}의 미세먼지 : ${mise}</p>`
-                // $('#misemsg').empty();
-                // $('#misemsg').append(temp_html);
-            })
+        
+        let url = "http://spartacodingclub.shop/sparta_api/seoulair";
+        fetch(url).then(res => res.json()).then(data => {
+            let gu = data['RealtimeCityAir']['row'][0]['MSRSTE_NM'];
+            let mise = data['RealtimeCityAir']['row'][0]['IDEX_NM'];
+            $('#gu').text(gu);
+            $('#msg').text(mise);
+            // let temp_html = `<p>현재 서울 ${gu}의 미세먼지 : ${mise}</p>`
+            // $('#misemsg').empty();
+            // $('#misemsg').append(temp_html);
         })
 
-        function openclose() {
-            $('#postingbox').toggle();
-        }
 
         function makeCard() {
             let image = $('#image').val();
