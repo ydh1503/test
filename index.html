@@ -117,7 +117,7 @@
             $('#postingbox').toggle();
         })
 
-        
+
         let url = "http://spartacodingclub.shop/sparta_api/seoulair";
         fetch(url).then(res => res.json()).then(data => {
             let gu = data['RealtimeCityAir']['row'][0]['MSRSTE_NM'];
@@ -129,12 +129,16 @@
             // $('#misemsg').append(temp_html);
         })
 
+        let docs = await getDocs(collection(db, "albums"));
+        $('#card').empty();
+        docs.forEach((doc) => {
+            let row = doc.data();
+            console.log(row);
 
-        function makeCard() {
-            let image = $('#image').val();
-            let title = $('#title').val();
-            let content = $('#content').val();
-            let date = $('#date').val();
+            let image = row['image'];
+            let title = row['title'];
+            let content = row['content'];
+            let date = row['date'];
 
             let temp_html = `
              <div class="col">
@@ -151,7 +155,8 @@
                 </div>
             </div>`;
             $('#card').append(temp_html);
-        }
+        });
+
     </script>
 </head>
 
